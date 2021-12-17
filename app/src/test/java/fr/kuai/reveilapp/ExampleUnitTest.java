@@ -1,4 +1,4 @@
-package com.example.rveilapp;
+package fr.kuai.reveilapp;
 
 import org.junit.Test;
 
