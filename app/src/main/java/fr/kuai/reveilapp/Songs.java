@@ -4,8 +4,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.util.Log;
-import android.widget.ArrayAdapter;
 
 import androidx.annotation.NonNull;
 
@@ -13,6 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Songs {
+    // Attributs //
+    String song_path;
+    String song_name;
+    String song_Album;
+    String song_Artist;
+
     // Méthodes //
     public String getaPath() {
         return song_path;
@@ -47,31 +51,28 @@ public class Songs {
     }
 
     /********* Liste les musiques de l'utilisateur *********/
-    public List<Songs> getAllAudioFromDevice(@NonNull final Context context) {
+    public List<Songs> getAllAudioFromDevice(final Context context) {
 
         final List<Songs> tempAudioList = new ArrayList<>();
 
         Uri uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-        String[] projection = {MediaStore.Audio.AudioColumns.DATA, MediaStore.Audio.AudioColumns.ALBUM, MediaStore.Audio.ArtistColumns.ARTIST,};
+        String[] projection = {MediaStore.Audio.AudioColumns.DATA, MediaStore.Audio.AudioColumns.TITLE, MediaStore.Audio.AudioColumns.ALBUM, MediaStore.Audio.ArtistColumns.ARTIST,};
         Cursor c = context.getContentResolver().query(uri, projection, null, null, null);
 
         if (c != null) {
             while (c.moveToNext()) {
-
                 Songs song = new Songs();
-                String path = c.getString(0);
-                String album = c.getString(1);
-                String artist = c.getString(2);
 
-                String name = path.substring(path.lastIndexOf("/") + 1);
+                String path = c.getString(0);
+                String name = c.getString(1);
+                String album = c.getString(2);
+                String artist = c.getString(3);
+
 
                 song.setaName(name);
                 song.setaAlbum(album);
                 song.setaArtist(artist);
                 song.setaPath(path);
-
-                Log.e("Name :" + name, " Album :" + album);
-                Log.e("Path :" + path, " Artist :" + artist);
 
                 tempAudioList.add(song);
             }
@@ -81,9 +82,9 @@ public class Songs {
         return tempAudioList;
     }
 
-    // Attributs //
-    String song_path;
-    String song_name;
-    String song_Album;
-    String song_Artist;
+    @NonNull
+    @Override
+    public String toString() {
+        return " \uD83C\uDFB5" + getaName()+ " \uD83D\uDC64" + getaArtist() + " \uD83D\uDCBF" + getaAlbum();
+    }
 }
