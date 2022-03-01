@@ -12,10 +12,7 @@ import java.util.List;
 
 public class Songs {
     // Attributs //
-    String song_path;
-    String song_name;
-    String song_Album;
-    String song_Artist;
+    String song_path, song_name, song_Album, song_Artist;
 
     // Méthodes //
     public String getaPath() {
@@ -67,7 +64,6 @@ public class Songs {
                 String name = c.getString(1);
                 String album = c.getString(2);
                 String artist = c.getString(3);
-
 
                 song.setaName(name);
                 song.setaAlbum(album);

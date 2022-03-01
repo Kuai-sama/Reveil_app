@@ -2,16 +2,20 @@
     <string name="app_name">ReveilApp</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
+    <string name="first_fragment_label">Liste des alarmes</string>
+    <string name="second_fragment_label">Programmer une alarme</string>
 
     <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="ButtonValue">+</string>
     <string name="String">Confirmer</string>
     <string name="annuler">Annuler</string>
     <string name="confirmer">Confirmer</string>
     <string name="test">Test</string>
+    <string name="set_alarm">Set Alarm</string>
+    <string name="select_time">Select Time</string>
+    <string name="_08_45_pm">08 : 45 PM</string>
+    <string name="notification_activity">Notification Activity</string>
+    <string name="chemin_des_musiques">Chemin des musiques</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
