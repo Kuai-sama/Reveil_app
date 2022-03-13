@@ -36,9 +36,8 @@ public class ClockFragment extends Fragment {
     private MaterialTimePicker picker;
     private Calendar calendar = Calendar.getInstance();
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
        View view = inflater.inflate(R.layout.clock_fragment, container, false);
-
 
         Songs song = new Songs();
         List<Songs> listOfAllMusic = song.getAllAudioFromDevice(getActivity());
@@ -55,6 +54,7 @@ public class ClockFragment extends Fragment {
             String data = (String) listOfAllMusic.get(pos).getaPath();
             chemin.setText(data);
         }
+
         public void onNothingSelected(AdapterView<?> adapterView) {}
         });
 
@@ -121,7 +121,11 @@ public class ClockFragment extends Fragment {
     }
 
     private void setAlarm() {
+        TextView MusicPath = getView().findViewById(R.id.PathText);
+        String Music_Path_String = MusicPath.getText().toString();
+
         Intent intent = new Intent(getActivity(), AlarmReceiver.class);
+        intent.putExtra("Music_Path_String", Music_Path_String);
 
         PendingIntent pendingIntent = PendingIntent.getBroadcast(getActivity(), 0, intent, 0);
 
@@ -130,18 +134,19 @@ public class ClockFragment extends Fragment {
 
         Toast toast = Toast.makeText(getActivity(), "Votre alarme a été programmée", Toast.LENGTH_SHORT);
         toast.show();
+
         SystemClock.sleep(1000); // Pause de 1 sec
 
-        //Intent i = new Intent(getActivity(), MainActivity.class);
-        //startActivity(i);
+        Intent i = new Intent(getActivity(), MainActivity.class);
+        startActivity(i);
     }
 
     private void createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence name = "foxandroidReminderChannel";
-            String description = "Channel For Alarm Manager";
+            CharSequence name = "Alarme";
+            String description = "Ceci est une alarme";
             int importance = NotificationManager.IMPORTANCE_HIGH;
-            NotificationChannel channel = new NotificationChannel("foxandroid", name, importance);
+            NotificationChannel channel = new NotificationChannel("Alarme", name, importance);
             channel.setDescription(description);
 
             NotificationManager notificationManager = getActivity().getSystemService(NotificationManager.class);
